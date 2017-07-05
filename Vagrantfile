@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
   config.vm.define :ismean do |ismean_config|
     ismean_config.vm.box = 'ubuntu/trusty64'
     ismean_config.vm.host_name = 'ismean.local'
-    ismean_config.vm.synced_folder 'saltstack/', '/srv/salt'
+    ismean_config.vm.synced_folder 'saltstack/salt', '/srv/salt'
     ismean_config.vm.network 'private_network', ip: '192.168.10.10'
 
     ismean_config.vm.provision :salt do |salt|
