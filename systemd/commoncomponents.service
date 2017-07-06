@@ -1,0 +1,15 @@
+[Unit]
+Description=Common Components Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutService=0
+ExecStartPre=-/usr/bin/docker kill test_cont
+ExecStartPre=-/usr/bin/docker rm test_cont
+ExecStartPre=/usr/bin/docker pull test
+ExecStart=/usr/bin/docker run --name test_cont -p 50000:8080 test
+ExecStop=/usr/bin/docker stop test_cont
+
+[Install]
+WantedBy=multi-user.target

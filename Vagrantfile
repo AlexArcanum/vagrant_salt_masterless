@@ -1,16 +1,13 @@
-# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-# All Vagrant configuration is done below. The "2" in Vagrant.configure
-# configures the configuration version (we support older styles for
-# backwards compatibility). Please don't change it unless you know what
-# you're doing.
-
 VAGRANT_API_VERSION = '2'
 Vagrant.configure(VAGRANT_API_VERSION) do |config|
+
+  config.ssh.username = 'ubuntu'
+  config.ssh.password = '9e0a71f41a6cc8dfcaab8980'
+
   config.vm.provider 'virtualbox' do |vb|
     vb.memory = 2048
   end
+
   config.vm.define :ismean do |ismean_config|
     #ismean_config.vm.box = 'ubuntu/trusty64'
     ismean_config.vm.box = 'ubuntu/xenial64'
