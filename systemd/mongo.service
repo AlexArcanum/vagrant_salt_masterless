@@ -1,0 +1,14 @@
+[Unit]
+Description=MongoDB Container Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill mongodb_ismean_cont
+ExecStartPre=-/usr/bin/docker rm mongodb_ismean_cont
+ExecStart=/usr/bin/docker run --name mongodb_ismean_cont -p 27017:27017 --network=network_mean mongodb_ismean
+ExecStop=/usr/bin/docker stop mongodb_ismean_cont
+
+[Install]
+WantedBy=multi-user.target

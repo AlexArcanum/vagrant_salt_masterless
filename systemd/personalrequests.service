@@ -1,0 +1,14 @@
+[Unit]
+Description=Personal Requests Container Service
+After=mongo.service
+Requires=mongo.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill preq_ismean_cont
+ExecStartPre=-/usr/bin/docker rm preq_ismean_cont
+ExecStart=/usr/bin/docker run --name preq_ismean_cont -p 50001:3000 --network=network_mean preq_ismean
+ExecStop=/usr/bin/docker stop preq_ismean_cont
+
+[Install]
+WantedBy=multi-user.target
